@@ -1,0 +1,118 @@
+---
+title: Custom Button Example - Databases
+icon: mdi:settings-outline
+cards:
+###################################################################################################
+## Custom Button (3 databases)
+###################################################################################################
+  - type: 'custom:button-card'
+    entity: sensor.yr_temperature
+    icon: 'mdi:database'
+    name: DATABASES
+    show_icon: true
+
+    # tap_action:
+    #   action: navigate
+    #   navigation_path: 'https://xxxxxxxxxxxxx.duckdns.org/lovelace/8'
+
+    custom_fields:
+      row1: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-1-circle-outline"
+          style="width: 12px; height: 12px; color: deepskyblue;">
+          </ha-icon> <span>HASS.IO: <span style="color: var(--text-color-sensor);">${states['sensor.home_assistant_v2_db'].state}MB</span></span>`
+        ]]]
+      row2: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-2-circle-outline"
+          style="width: 12px; height: 12px; color: deepskyblue;">
+          </ha-icon> <span>INFLUX: <span style="color: var(--text-color-sensor);">${states['sensor.influxdb_internal'].state}MB</span></span>`
+        ]]]
+      row3: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-3-circle-outline"
+          style="width: 12px; height: 12px; color: deepskyblue;">
+          </ha-icon> <span>TRACCAR: <span style="color: var(--text-color-sensor);">${states['sensor.traccar_database_size'].state}MB</span></span>`
+        ]]]
+      # speed: |
+      #   [[[  
+      #     return `<ha-icon
+      #     icon="mdi:pulse"
+      #     style="width: 20px; height: 20px; color: deepskyblue;">
+      #     </ha-icon> <span> <span style="color: var(--text-color-sensor);">${states['sensor.processor_use'].state} GHz</span></span>`
+      #   ]]]
+      # temp: |
+      #   [[[
+      #     return `<ha-icon
+      #     icon="mdi:thermometer"
+      #     style="width: 16px; height: 16px; color: orange;">
+      #     </ha-icon> <span>${entity.state}°C</span>`
+      #   ]]]      
+
+    styles:
+      card:
+        - background: 'linear-gradient(rgba(255,255,255,0.1) 103px, rgba(0,0,20,0.3)50%)'
+        - border-radius: 15px
+        - border: 'solid 1.5px rgba(57,128,228)'
+        - color: ivory
+        - font-size: 15px
+        - text-shadow: 0px 0px 5px black
+        - text-transform: capitalize
+        # - height: 132px
+        # - width: 132px
+        - height: 190px
+        - width: 190px
+        - padding: 4%
+      custom_fields:
+        row1:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': '[[[ if (states["sensor.home_assistant_v2_db"].state > 1000) return "red"; ]]]'
+        row2:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': '[[[ if (states["sensor.influxdb_internal"].state > 1000) return "red"; ]]]'
+        row3:
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': '[[[ if (states["sensor.traccar_database_size"].state > 1000) return "red"; ]]]'
+        # speed:
+        #   - font-size: 20px
+        #   - justify-self: end
+        #   - margin-top: '-35px'
+        # temp:
+        #   - font-size: 20px
+        #   - justify-self: end
+        #   - margin-top: '-35px'
+      grid:
+        - grid-template-areas: '"i temp""speed speed"  "n n" "row1 row1" "row2 row2" "row3 row3"'
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows: 1fr min-content min-content min-content min-content
+      icon:
+        - color: |
+            [[[
+              if (entity.state < 60) return 'dodgerblue';
+              if (entity.state >= 60 && entity.state < 80) return 'orange';
+              else return 'red';
+            ]]]
+        - width: 70%
+        - margin-top: '-5%'
+      img_cell:
+        - justify-content: start
+        - align-items: start
+        - margin: none
+      name:
+        - font-weight: bold
+        - font-size: 15px
+        - color: white
+        - align-self: middle
+        - justify-self: start
+        - padding-bottom: 14px
+###################################################################################################
+## / Custom Button (3 databases)
+###################################################################################################
