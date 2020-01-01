@@ -1,0 +1,124 @@
+---
+title: BlitzWolf SmartPlug
+icon: mdi:power-socket-eu
+cards:
+###################################################################################################
+## Custom Button (BlitzWolf SHP6)
+###################################################################################################
+  - type: 'custom:button-card'
+    entity: switch.blitzwolf01
+    name: "Julstjärna Kök"
+    show_entity_picture: true
+    entity_picture: /local/lovelace/home/bw-shp6.png
+
+    tap_action:
+      action: more-info
+      entity: sensor.blitzwolf01_status
+
+    double_tap_action:
+      action: more-info
+      entity: sensor.blitzwolf01_energy_power
+
+    hold_action:
+      action: toggle
+      entity: switch.blitzwolf01
+
+    custom_fields:
+      upper1: |
+        [[[
+          return `<span><span style="color: var(--text-color-sensor);">${states['sensor.blitzwolf01_energy_power'].state}</span></span>
+          <ha-icon icon="mdi:alpha-w-circle-outline" style="width: 21px; height: 21px; color: deepskyblue;"> </ha-icon>`
+        ]]]      
+
+      upper2: |
+        [[[  
+          return `<span><span style="color: var(--text-color-sensor);">${states['sensor.blitzwolf01_energy_current'].state}</span></span>
+          <ha-icon icon="mdi:alpha-a-circle-outline" style="width: 21px; height: 21px; color: deepskyblue;"> </ha-icon>`
+        ]]]
+
+      lower1: |
+        [[[
+          return `<span>(<span style="color: var(--text-color-sensor);">${entity.attributes.friendly_name}</span>)</span>`
+        ]]]
+
+      lower2: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-1-circle-outline"
+          style="width: 20px; height: 20px; color: deepskyblue;">
+          </ha-icon> <span>RSSI: <span style="color: var(--text-color-sensor);">${states['sensor.blitzwolf01_status'].attributes.RSSI}</span></span>`
+        ]]]
+
+      lower3: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-2-circle-outline"
+          style="width: 20px; height: 20px; color: deepskyblue;">
+          </ha-icon> <span>IP: <span style="color: var(--text-color-sensor);">${states['sensor.blitzwolf01_status'].attributes.IPAddress}</span></span>`
+        ]]]
+
+      lower4: |
+        [[[
+          return `<ha-icon
+          icon="mdi:numeric-3-circle-outline"
+          style="width: 20px; height: 20px; color: deepskyblue;">
+          </ha-icon> <span>VERSION: <span style="color: var(--text-color-sensor);">${states['sensor.blitzwolf01_status'].attributes.Version}</span></span>`
+        ]]]
+
+    styles:
+      card:
+        - background: 'linear-gradient(rgba(255,255,255,0.1) 112px, rgba(0,0,20,0.3)50%)'
+        - border-radius: 15px
+        - border: 'solid 3px var(--button-card-light-color)'
+        - color: ivory
+        - font-size: 13px
+        - text-shadow: 0px 0px 5px black
+        - text-transform: capitalize
+        - height: 190px
+        - width: 190px
+        - padding: 4%
+      custom_fields:
+        upper1:
+          - font-size: 20px
+          - justify-self: end
+          - margin-top: '-40px'
+        upper2:
+          - font-size: 20px
+          - justify-self: end
+          - margin-top: '-40px'
+        lower1:
+          - padding-bottom: 8px
+          - align-self: middle
+          - justify-self: start
+        lower2:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        lower3:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        lower4:
+          - align-self: middle
+          - justify-self: start
+          - margin-bottom: '-2px'
+      grid:
+        - grid-template-areas: '"i upper1""upper2 upper2"  "n n" "lower1 lower1" "lower2 lower2" "lower3 lower3" "lower4 lower4"'
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows: 1fr min-content min-content min-content min-content min-content
+      icon:
+        - width: 65%
+      img_cell:
+        - justify-content: start
+        - align-items: start
+        - margin: none
+      name:
+        - font-weight: bold
+        - font-size: 15px
+        - color: white
+        - align-self: middle
+        - justify-self: start
+        - padding-bottom: 4px
+###################################################################################################
+## / Custom Button (BlitzWolf)
+###################################################################################################
