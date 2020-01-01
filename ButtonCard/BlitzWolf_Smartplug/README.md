@@ -1,6 +1,6 @@
 An example of a custom button card showing information from a BlitzWolf SHP6 Smart PowerPlug and controll it and shows additional informations
 
-![Example](buttoncard_blitzwolf.png)
+![Example](buttoncard_blitzwolf.png) ![Example](buttoncard_blitzwolf_4_lines.png)
 
 FEATURES:
 * Tap = Shows more info on the *_status sensor
@@ -17,6 +17,7 @@ INFORMATION:
 * Bottom line 1 (left): Shows RSSI from *_status sensor
 * Bottom line 2 (left): Shows IPAdress from *_status sensor
 * Bottom line 3 (left): Shows Version from *_status sensor
+* Bottom line 4 (left): Shows Operational State
 
 VISUALS:
 
